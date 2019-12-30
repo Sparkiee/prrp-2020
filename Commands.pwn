@@ -13226,7 +13226,7 @@ COMMAND:m(playerid, params[])
 	else
 	{
 	    if (GetPVarInt(playerid, "PlayerLogged") == 0) return SendClientMessage(playerid, COLOR_WHITE, "You must be logged in to use this.");
-		if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD)
+		if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD || GetPVarInt(playerid, "Member") == FACTION_LSG)
 		{
    		    format(sendername, sizeof(sendername), "%s", PlayerNameEx(playerid));
       		GiveNameSpace(sendername);
@@ -13234,6 +13234,7 @@ COMMAND:m(playerid, params[])
 	    	{
 	    	    case 1: format(string, sizeof(string), "[LSPD %s:o< %s]", sendername, text);
 	    	    case 2: format(string, sizeof(string), "[LSFD %s:o< %s]", sendername, text);
+	    	    case 5: format(string, sizeof(string), "[GOV %s:o< %s]", sendername, text);
 	    	}
 			ProxDetector(60.0, playerid, string,COLOR_YELLOW);
 			foreach(new h : HouseIterator)
@@ -13371,7 +13372,7 @@ COMMAND:cblock(playerid, params[])
     if (GetPVarInt(playerid, "PlayerLogged") == 0) return SendClientMessage(playerid, COLOR_WHITE, "You must be logged in to use this.");
     if(GetPlayerInterior(playerid) != 0) return true;
     if(GetPlayerVirtualWorld(playerid) != 0) return true;
-	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD)
+	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD || GetPVarInt(playerid, "Member") == FACTION_LSG)
 	{
 	    if(GetPVarInt(playerid, "Rank") >= 1)
 	    {
@@ -13394,7 +13395,7 @@ COMMAND:rblock(playerid, params[])
 {
     if (GetPVarInt(playerid, "PlayerLogged") == 0) return SendClientMessage(playerid, COLOR_WHITE, "You must be logged in to use this.");
     new found = 0;
-	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD)
+	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD || GetPVarInt(playerid, "Member") == FACTION_LSG)
 	{
 	    if(GetPVarInt(playerid, "Rank") >= 1)
 	    {
@@ -13423,7 +13424,7 @@ COMMAND:rblockall(playerid, params[])
 {
     if (GetPVarInt(playerid, "PlayerLogged") == 0) return SendClientMessage(playerid, COLOR_WHITE, "You must be logged in to use this.");
     new found = 0;
-	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD)
+	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD || GetPVarInt(playerid, "Member") == FACTION_LSG)
 	{
 	    if(GetPVarInt(playerid, "Rank") >= 1)
 	    {
@@ -13448,7 +13449,7 @@ COMMAND:rblockall(playerid, params[])
 COMMAND:rblockedit(playerid, params[])
 {
     if (GetPVarInt(playerid, "PlayerLogged") == 0) return SendClientMessage(playerid, COLOR_WHITE, "You must be logged in to use this.");
-	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD)
+	if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Member") == FACTION_LSFD || GetPVarInt(playerid, "Member") == FACTION_LSG)
 	{
 	    if(GetPVarInt(playerid, "Rank") >= 1)
 	    {
@@ -13840,7 +13841,7 @@ COMMAND:handcuff(playerid, params[])
 		}
 	    if (playerid == targetid) return SendClientMessage(playerid, COLOR_ERROR, "You cannot handcuff yourself.");
 	    if (!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_WHITE, "This player is not connected!");
-		if(GetPVarInt(playerid, "Member") == FACTION_LSPD)
+		if(GetPVarInt(playerid, "Member") == FACTION_LSPD || (GetPVarInt(playerid, "Member") == FACTION_LSG && GetPVarInt(playerid, "Rank") >= 12))
 		{
 		    if(GetPVarInt(playerid, "Suspend") == 1) return scm(playerid, COLOR_ERROR, "You are currently suspended from the LSPD.");
 		    if(PlayerToPlayer(playerid,targetid,3.0))
@@ -13887,7 +13888,7 @@ COMMAND:uncuff(playerid, params[])
 		}
 		if (playerid == targetid) return SendClientMessage(playerid, COLOR_ERROR, "You cannot uncuff yourself.");
 	    if (!IsPlayerConnected(targetid)) return SendClientMessage(playerid, COLOR_WHITE, "This player is not connected!");
-		if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Admin") >= 1)
+		if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Admin") >= 1 || (GetPVarInt(playerid, "Member") == FACTION_LSG && GetPVarInt(playerid, "Rank") >= 12))
 		{
 		    if(PlayerToPlayer(playerid,targetid,3.0))
 		    {

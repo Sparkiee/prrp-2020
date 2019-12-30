@@ -16676,7 +16676,7 @@ stock CreateNewsVehicle(playerid, modelid, color1, color2)
 stock CreateGovVehicle(playerid,modelid,color1,color2)
 {
     new carid;
-    carid = CreateVehicle(modelid,1463.0500,-1840.4990,13.4200,91.3614,color1,color2, -1);
+    carid = CreateVehicle(modelid,1463.0500,-1840.4990,13.4200,91.3614,color1,color2, -1, 1);
     SetVehicleNumberPlate(carid, PrintVehiclePlate(GenerateRandomVehiclePlate()));
     Iter_Add(VehicleIterator, carid);
     CopInfo[carid][Created]=1;
@@ -26891,6 +26891,7 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
 						{
 							DestroyDynamicObject(VehicleInfo[vehicleid][vSirenObjectID][i]);
 							VehicleInfo[vehicleid][vSirenObjectID][i] = 0;
+							VehicleInfo[vehicleid][vSirenObject][i] = 0;
 						}
 					}
 
@@ -26922,6 +26923,7 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
 						{
 							DestroyDynamicObject(VehicleInfo[vehicleid][vSirenObjectID][i]);
 							VehicleInfo[vehicleid][vSirenObjectID][i] = 0;
+							VehicleInfo[vehicleid][vSirenObject][i] = 0;
 						}
 					}
 				}
