@@ -8227,7 +8227,7 @@ public OnPlayerText(playerid, text[])
                             format(string, sizeof(string), "[Windows Shut]: %s: %s", sendername, text); // %s  PrintPrefix(playerid),
                             type=1;
                         }
-                        case 1: format(string, sizeof(string), "[Windows Open]: %s : %s", sendername, text);//%s PrintPrefix(playerid),
+                        case 1: format(string, sizeof(string), "[Windows Open]: %s: %s", sendername, text);//%s PrintPrefix(playerid),
                     }
                 }
 				if(type == 0) ProxDetector(30.0, playerid, string, COLOR_FADE), SetPlayerChatBubble(playerid, string, COLOR_WHITE, 10.0, strlen(text)*100);
