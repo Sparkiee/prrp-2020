@@ -9788,7 +9788,7 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 	            if(HouseInfo[h][hOwned] == 0) //for sale
 	            {
 				    format(str, sizeof(str),"~w~Property");
-					format(str2, sizeof(str2), " ~w~Price: ~g~~h~ %s (buy) ~n~~n~ ~w~Press ~r~~h~ 'H' ~w~to buy. ", FormatMoney(HouseInfo[h][hValue]));
+					format(str2, sizeof(str2), " ~w~Price: ~g~~h~ %s (buy) ~n~~n~ ~w~Press ~r~~h~ 'H' ~w~to buy~n~ Type ~r~~h~/enter ~w~to enter", FormatMoney(HouseInfo[h][hValue]));
 		            CreateLableText(playerid, str, str2);
 				}
 				else //Bought
