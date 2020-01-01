@@ -20164,6 +20164,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, 
 				HouseInfo[key][horZ][h]=fRotZ;
 				SaveFurn(key);
 				RemovePlayerTag(playerid);
+				SetPVarInt(playerid, "Planting", 0);
 	        }
 	    }
 	    case 3: // Biz furniture
@@ -20204,6 +20205,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, 
 				SaveBizFurn(key);
 	        }
 	        RemovePlayerTag(playerid);
+	        SetPVarInt(playerid, "Planting", 0);
 	    }
 	    case 5: // Roadblock
 	    {
@@ -20319,6 +20321,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, 
 	}
 
     DeletePVar(playerid,"EditorMode");
+    SetPVarInt(playerid, "Planting", 0);
 	SetPVarInt(playerid, "Mute", 0);
 	return true;
 }
