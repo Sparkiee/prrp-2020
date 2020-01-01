@@ -948,7 +948,7 @@ COMMAND:pm(playerid, params[])
  	if(GetPVarInt(playerid, "Mute") == 1) return SendClientMessage(playerid, COLOR_ERROR, "You are currently muted!");
 	if(IsPlayerConnected(targetid))
 	{
-		if(GetPVarInt(targetid, "Admin") >= 4 && GetPVarInt(targetid, "Admin") <= 11 && GetPVarInt(playerid, "APMWRN") == 0)
+		if(GetPVarInt(targetid, "Admin") >= 4 && GetPVarInt(targetid, "Admin") <= 11 && GetPVarInt(playerid, "APMWRN") == 0 && GetPVarInt(targetid, "AHide") > 0)//SetPVarInt(playerid, "AHide", aimid);
 		{
 		    SetPVarString(playerid, "APMMSG", text);
 		    SetPVarInt(playerid, "APMID", targetid);
@@ -3207,7 +3207,7 @@ COMMAND:gmx(playerid, params[])
 COMMAND:togtls(playerid, params[])
 {
     if (GetPVarInt(playerid, "PlayerLogged") == 0) return SendClientMessage(playerid, COLOR_WHITE, "SERVER: You must be logged in to use this.");
-    if(GetPVarInt(playerid, "Admin") >= 10)
+    if(GetPVarInt(playerid, "Admin") >= 9)
     {
         switch(DoubleTLS)
         {
@@ -11566,6 +11566,8 @@ COMMAND:house(playerid, params[])
 	{
 		if(GetPVarInt(playerid, "Mute") == 1) return 1;
 
+        if(GetPVarInt(playerid, "Planting") >= 0) return SendClientMessage(playerid, COLOR_ERROR, "You can't plant another object while planting one!");
+
 		new allow = FurnRight(playerid, 1);
 		
 	    if(allow > 0)
@@ -11617,6 +11619,7 @@ COMMAND:house(playerid, params[])
 		        format(string, sizeof(string),"%s selected, use the SPRINT key to navigate.", ObjectList[foundid][oName]);
 		        SendClientMessage(playerid, COLOR_WHITE, string);
 		        AddPlayerTag(playerid, "(planting furniture)");
+		        SetPVarInt(playerid, "Planting", 1); //Added for planting prevention
             }
         }
 	}
@@ -16924,7 +16927,11 @@ COMMAND:biz(playerid, params[])
 	{
 		if(GetPVarInt(playerid, "Mute") == 1) return 1;
 
+        if(GetPVarInt(playerid, "Planting") >= 0) return SendClientMessage(playerid, COLOR_ERROR, "You can't plant another object while planting one!");
+
 	    new allow = FurnRight(playerid, 2);
+
+	    
 	    if(allow > 0)
 	    {
 	        if(GetPlayerInterior(playerid) == 0 && GetPlayerVirtualWorld(playerid) == 0 && amount == -1)
@@ -16974,6 +16981,7 @@ COMMAND:biz(playerid, params[])
 		        format(string, sizeof(string),"%s selected, use the SPRINT key to navigate.", ObjectList[foundid][oName]);
 		        SendClientMessage(playerid, COLOR_WHITE, string);
 		        AddPlayerTag(playerid, "(planting furniture)");
+		        SetPVarInt(playerid, "Planting", 1);
             }
 	    }
 	}
