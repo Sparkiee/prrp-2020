@@ -11566,7 +11566,7 @@ COMMAND:house(playerid, params[])
 	{
 		if(GetPVarInt(playerid, "Mute") == 1) return 1;
 
-        if(GetPVarInt(playerid, "Planting") >= 0) return SendClientMessage(playerid, COLOR_ERROR, "You can't plant another object while planting one!");
+        if(GetPVarInt(playerid, "Planting") > 0) return SendClientMessage(playerid, COLOR_ERROR, "You can't plant another object while planting one!");
 
 		new allow = FurnRight(playerid, 1);
 		
@@ -16927,7 +16927,7 @@ COMMAND:biz(playerid, params[])
 	{
 		if(GetPVarInt(playerid, "Mute") == 1) return 1;
 
-        if(GetPVarInt(playerid, "Planting") >= 0) return SendClientMessage(playerid, COLOR_ERROR, "You can't plant another object while planting one!");
+        if(GetPVarInt(playerid, "Planting") > 0) return SendClientMessage(playerid, COLOR_ERROR, "You can't plant another object while planting one!");
 
 	    new allow = FurnRight(playerid, 2);
 
