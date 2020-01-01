@@ -20144,6 +20144,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, 
 	            format(string, 500, "Would you like to purchase this item?\n%s: - ID: %d\nPrice: $250", GetObjName(PlayerInfo[playerid][pFurnID]), PlayerInfo[playerid][pFurnID]);
 	            ShowPlayerDialogEx(playerid, 75, DIALOG_STYLE_MSGBOX,"Furniture Agreement", string, "Yes", "No");
 	            RemovePlayerTag(playerid);
+	            SetPVarInt(playerid, "Planting", 0);
 	        }
 	    }
 	    case 2: // House furniture
@@ -20183,6 +20184,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, 
 	            ShowPlayerDialogEx(playerid, 102, DIALOG_STYLE_MSGBOX,"Furniture Agreement", string, "Yes", "No");
 	        }
 	        RemovePlayerTag(playerid);
+	        SetPVarInt(playerid, "Planting", 1);
 	    }
 	    case 4: // Biz furniture
 	    {
