@@ -13973,7 +13973,7 @@ COMMAND:drag(playerid, params[])
 	    if(IsPlayerNPC(targetid)) return SendClientMessage(playerid, COLOR_ERROR, "Can't do this to a NPC.");
 	    //if(GetPVarInt(targetid, "Member") == FACTION_LSPD && GetPVarInt(playerid, "Admin") < 1) return SendClientMessage(playerid,COLOR_ERROR,"Cannot Drag LSPD.");
 		if(GetPVarInt(targetid, "Dead") > 0) return SendClientMessage(playerid,COLOR_ERROR,"Cant drag dead-people.");
-		if(/*GetPVarInt(playerid, "Member") == FACTION_LSPD || */GetPVarInt(playerid, "Admin") >= 1)
+		if(GetPVarInt(playerid, "Member") == FACTION_LSPD || GetPVarInt(playerid, "Admin") >= 1)
 		{
 		    if(PlayerToPlayer(playerid,targetid,3.0))
 		    {
@@ -18037,8 +18037,8 @@ COMMAND:enter(playerid, params[])
 			{
 		        if(IsPlayerInRangeOfPoint(playerid, 2.0, HouseInfo[h][hXo], HouseInfo[h][hYo], HouseInfo[h][hZo]) && GetPlayerVirtualWorld(playerid) == HouseInfo[h][hVwOut])
 		        {
-		            //if(HouseInfo[h][hOwned] != 0)
-		            //{
+		            if(HouseInfo[h][hOwned] != 0)
+		            {
 		                if(HouseInfo[h][hLocked] == 0)
 		                {
 		                	TogglePlayerControllableEx(playerid, false);
@@ -18076,11 +18076,11 @@ COMMAND:enter(playerid, params[])
 						{
 							error(playerid, "This house is locked.");
 						}
-		            //}
-		            /*else
+		            }
+		            else
 		           	{
 						error(playerid, "This house is not owned by anyone.");
-		            }*/
+		            }
 				}
 		        else if(IsPlayerInRangeOfPoint(playerid, 2.0, HouseInfo[h][hXi], HouseInfo[h][hYi], HouseInfo[h][hZi]) && GetPlayerVirtualWorld(playerid) == HouseInfo[h][hVwIn])
 		        {
